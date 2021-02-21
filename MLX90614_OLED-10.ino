@@ -94,21 +94,7 @@ void loop()
         }
           goto BODY; 
 
-BODY: while (digitalRead(pin3) == LOW)
-        {
-          Serial.println("IO27 is pressed");
-          Serial.println(digitalRead(pin3));
-          display.clearDisplay();
-          delay(1000);
-          get_body();                                                                            
-          delay(500);
-          unit_display();                                                                                  
-          web_body();
-          Line_body();
-          if (digitalRead(pin3) == LOW) continue;
-          if (digitalRead(pin3) == HIGH) break;                       
-        }                                                            
-          goto Mode;   
+BODY: 
 
 }
 
@@ -153,22 +139,7 @@ void get_surface()
     display.print(Objtemp1,1);     
 }
 
-void get_body()
-{
-    Wire.beginTransmission(0x5A);                                                                          //Start to send MLX90614 I2C address-0x5A
-    Wire.write(0x07);                                                                                      // Write I2C data to MLX90614 address-0x07 (Ogject Temperature)
-    Wire.endTransmission(false);                                                                           // I2C stop transmission
-    Wire.requestFrom(0x5A, 3);                                                                             //向已知地址slave獲取連續3個數據，這時候需要注意，數據只是存起來了，並沒有真正返回
-    result = Wire.read();                                                                                  //Receive DATA
-    result |= Wire.read() << 8;                                                                            //Receive DATA
-    uint8_t pec = Wire.read();
-    temp =  result*0.02-273.15;                                                                            //Measure Surface Temperature
-    Objtemp2 = temp + threshold;
-    Serial.println(Objtemp2,1);
-    Serial.println(" *C");
-    display.setCursor(0,4); 
-    display.print(Objtemp2,1);     
-}
+
 
 void web_surface()
 {
@@ -194,29 +165,7 @@ void web_surface()
               delay(5000);                          
 }
 
-void web_body()
-{
-  //Forward its value to Thingspeak
-               Serial.println("Connect Web");
-               HTTPClient http;
-//   String url1 = url + "&field1=" + (int)mlx.readObjectTempC();                          // Show the value of Temperature and Humidity by parameter with Http get on Web ; 將溫度及濕度以http get參數方式補入網址後方
-            String url2 = url + "&field1=" + (int)Objtemp2;                               // Show the value of Temperature and Humidity by parameter with Http get on Web ; 將溫度及濕度以http get參數方式補入網址後方
-//              String url2 = url + "&field1=" + (float)Objtemp2;                               // Show the value of Temperature and Humidity by parameter with Http get on Web ; 將溫度及濕度以http get參數方式補入網址後方
-              http.begin(url2);                                                                      //Get the content of heep client ; http client取得網頁內容
-              int httpCode = http.GET();
-              if (httpCode == HTTP_CODE_OK)      
-                  {
-                    String payload = http.getString();                                                   //Read content of the Web on payload
-                    Serial.print("Web content=");                                                        //Display the content of Web
-                    Serial.println(payload);
-                  } 
-                  else 
-                  { 
-                      Serial.println("Web connect fail");
-                  }
-               http.end();
-              delay(5000);                          
-}
+
 
 void Line_surface()
 {
