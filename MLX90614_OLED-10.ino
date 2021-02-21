@@ -9,9 +9,8 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 #include <HTTPClient.h>
-String Linetoken = "Mij04QbPme4LUUymgW39uQN7QYCTR0gZststgM4T9tr";                            //Your New Line Token
-//String Linetoken = "vg0ZKjA0aThL3tuWUAGG73xaes7WiD9e0yFplu0K5vx";                            //Your Line Token
-//String Linetoken = "jCwIE0nJZD5NA5DAW3AC7xYjABWnALl4GjEkZpin9M3";                          //Your Line Token for group 
+String Linetoken = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";                            //Your New Line Token
+
 
 int threshold = 4;                                                                          //MLX90614 Calibration for Body mode (Surface + 4 C=Body)
 float temp,Objtemp1,Objtemp2; 
