@@ -88,13 +88,11 @@ void loop()
           unit_display();                                                                                  
           web_surface();
           Line_surface();  
-          
-          if (digitalRead(pin2) == LOW) continue;
-          if (digitalRead(pin2) == HIGH) break;            
+                               
         }
-          goto BODY; 
+       
 
-BODY: 
+
 
 }
 
