@@ -28,10 +28,8 @@ char host[] = "notify-api.line.me";                                             
 
 // Your WiFi credentials.
 // Set password to "" for open networks.
-char ssid[] = "HITRON-6E00";  //Home WIFI SSID
-char password[] = "0921294757";  //Home WIFI Password
-// char ssid[] = "CPH1607";  //Phone WIFI SSID
-// char password[] = "12345678";  //Phone WIFI Password
+char ssid[] = "Home WIFI SSID";
+char password[] = "Home WIFI Password"
 
 String url = "https://api.thingspeak.com/update?api_key=KE393NY4C7E4Y3UH&field1=25";        //Set Thingspeak chanel 
 
