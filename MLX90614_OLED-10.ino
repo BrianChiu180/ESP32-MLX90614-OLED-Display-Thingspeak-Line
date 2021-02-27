@@ -175,9 +175,7 @@ void web_surface()
               //Forward its value to Thingspeak
               Serial.println("Connect Web");
               HTTPClient http;
-//   String url1 = url + "&field1=" + (int)mlx.readObjectTempC();                                         // Show the value of Temperature and Humidity by parameter with Http get on Web 
               String url1 = url + "&field1=" + (int)Objtemp1;                                             // Show the value of Temperature and Humidity by parameter with Http get on Web 
-//              String url1 = url + "&field1=" + (float)Objtemp1;                                         // Show the value of Temperature and Humidity by parameter with Http get on Web
               http.begin(url1);                                                                           //Get the content of heep client 
               int httpCode = http.GET();
               if (httpCode == HTTP_CODE_OK)      
@@ -257,13 +255,11 @@ void Line_surface()
 void Line_body()
 {
   //ESP32 will send its warming if the temperaure is over than 30C
-//  if (mlx.readObjectTempC() >= 30 ) 
   if (Objtemp2 >= 30 )
   {
     //組成Line訊息內容
 //    String message = "目前待測物溫度有偏高趨勢, 請派人前往處理";                               //The message content of Line
     String message = "The Temperaute will risk";                               //The message content of Line
-//    message += "\nTemperature=" + String((int)mlx.readObjectTempC()) + " *C";           //The message content of Line
    message += "\nTemperature=" + String((int)Objtemp2) + " *C";           //The message content of Line
     
     Serial.println(message);
